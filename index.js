@@ -1,7 +1,9 @@
-// creating the server
 const http = require("http");
-// console.log(http);
-// console.log(12354);http.createServer(()=>
-{
-    console.log("created a server");
-})
+
+const server = http.createServer((req, res) => {
+  console.log("creating server");
+  res.end("noice");
+});
+server.listen(3002, () => {
+  console.log("server is working d");
+});
