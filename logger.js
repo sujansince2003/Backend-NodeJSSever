@@ -6,3 +6,5 @@ function Hello() {
 
 module.exports.url = url;
 module.exports.Hello = Hello;
+
+// console.log(module);   gives detail about the module
