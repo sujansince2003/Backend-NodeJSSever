@@ -1,17 +1,10 @@
-// we have global object in node js
-console.log("i am learning node");
-global.console.log("i am learning node");
-// both do the same job
-/**
- * we can do same for others window objects like setTimeout(),setInterval()....
- * 
-In browser we can follow same ::::  window.console.log() , window.setInterval() it also works for variables::
-window.name="sujan"
-console.log(name)
-its same as  let name="sujan"
-**but in node the variables we define are not added to the global obj
-they are only scoped to this file only
-this is due to node modular system
- */
+var _ = require("underscore");
+// first checks in core module then file or folder then in node_modules folder
 
-// importing the module
+const result = _.contains([1, 3, 4, 5], 4);
+console.log(result);
+
+const mypkg = require("hellosujan");
+mypkg.printName("sujan");
+mypkg.printCountry();
+// console.log(mypkg);
