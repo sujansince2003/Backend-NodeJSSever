@@ -94,6 +94,20 @@ app.put("/courses/:cid", (req, res) => {
   res.send(course);
 });
 
+// handling delete
+app.delete("/courses/:cid", (req, res) => {
+  const course = courses.find((c) => c.id === parseInt(req.params.cid));
+
+  if (!course) {
+    res.status(404).send("course not found with this id");
+    return;
+  }
+  // delete
+  const index = courses.indexOf(course);
+  courses.splice(index, 1);
+  res.send(course);
+});
+
 const port = process.env.PORT || 3000;
 console.log(process.env.PORT);
 app.listen(port, () => {
