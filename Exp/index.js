@@ -28,6 +28,11 @@ callback function takes 2 arguments req and res
 
 //
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static("public"));
+// we store static file inside public folder like css,images..
+// let hello.txt is inside public folder then when we go tp http://localhost:3000/hello.txt we can serve this static file to client
 
 // creating custom middlewares
 
