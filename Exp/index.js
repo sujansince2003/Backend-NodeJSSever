@@ -2,6 +2,8 @@
 const Joi = require("joi");
 const login = require("./login");
 const auth = require("./auth");
+const helmet = require("helmet");
+const morgan = require("morgan");
 const courses = [
   { id: 1, course: "CSIT" },
   { id: 2, course: "BCA" },
@@ -20,6 +22,11 @@ post: to add data
 delete:to delete 
 */
 
+// enviroment
+// console.log(`Environemnt: ${process.env.NODE_ENV}`); this returns undefined if env varaible is not defined
+// enviroment
+// console.log(`Environemnt: ${app.get("env")}`);  this returns development by default
+
 /* app.get()
 it takes two arguments  path and callback function
 this callback function is called when we request to that path or url
@@ -27,6 +34,13 @@ callback function takes 2 arguments req and res
 */
 
 //
+app.use(helmet());
+console.log(app.get("env"));
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  console.log("morgan is running in development ");
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
