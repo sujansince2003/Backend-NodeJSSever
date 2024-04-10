@@ -5,6 +5,11 @@ const auth = require("./auth");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const config = require("config");
+
+// debug
+const firstdebugger = require("debug")("firstdebug");
+const seconddebugger = require("debug")("seconddebug");
+
 const courses = [
   { id: 1, course: "CSIT" },
   { id: 2, course: "BCA" },
@@ -46,6 +51,8 @@ app.use(helmet());
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
   console.log("morgan is running in development ");
+  firstdebugger("this is first debugger message");
+  seconddebugger("this is second debugger message");
 }
 
 app.use(express.json());
