@@ -1,6 +1,7 @@
 // making first express server
 const Joi = require("joi");
-
+const login = require("./login");
+const auth = require("./auth");
 const courses = [
   { id: 1, course: "CSIT" },
   { id: 2, course: "BCA" },
@@ -27,6 +28,12 @@ callback function takes 2 arguments req and res
 
 //
 app.use(express.json());
+
+// creating custom middlewares
+
+app.use(login);
+app.use(auth);
+
 app.get("/", (req, res) => {
   res.send("Hello express");
 });
