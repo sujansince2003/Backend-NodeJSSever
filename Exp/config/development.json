@@ -1,0 +1,7 @@
+{
+"name":"this is config for development",
+"mail":
+{
+    "host":"devemopemnt mail server"
+}
+}

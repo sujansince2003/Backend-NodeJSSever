@@ -4,6 +4,7 @@ const login = require("./login");
 const auth = require("./auth");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const config = require("config");
 const courses = [
   { id: 1, course: "CSIT" },
   { id: 2, course: "BCA" },
@@ -27,6 +28,12 @@ delete:to delete
 // enviroment
 // console.log(`Environemnt: ${app.get("env")}`);  this returns development by default
 
+// config
+
+console.log("config name: " + config.get("name"));
+console.log("mail server name: " + config.get("mail.host"));
+console.log("password: " + config.get("mail.password"));
+
 /* app.get()
 it takes two arguments  path and callback function
 this callback function is called when we request to that path or url
@@ -35,7 +42,7 @@ callback function takes 2 arguments req and res
 
 //
 app.use(helmet());
-console.log(app.get("env"));
+// console.log(app.get("env"));
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
   console.log("morgan is running in development ");

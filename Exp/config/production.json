@@ -1,0 +1,7 @@
+{
+    "name":"this is config for production",
+    "mail":
+    {
+        "host":"production mail server"
+    }
+    }
