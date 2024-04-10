@@ -1,3 +1,4 @@
+// example only
 function login(req, res, next) {
   console.log("logging in");
   next();
