@@ -1,3 +1,4 @@
+// async
 console.log("this is first");
 const uinfo = getInfo(90);
 console.log(uinfo);
@@ -11,3 +12,17 @@ function getInfo(pid) {
 }
 
 // callback
+
+// function
+function greet(name, callback) {
+  console.log(name);
+  callback();
+}
+
+// callback function
+function callMe() {
+  console.log("this is callback");
+}
+
+// passing function as an argument
+greet("Sujan", callMe);
