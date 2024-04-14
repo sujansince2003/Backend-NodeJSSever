@@ -62,3 +62,15 @@ async function getData() {
 }
 
 getData();
+
+// complex queries
+
+async function comgetdata() {
+  const cdata = await Usermodel.find({})
+    .limit(1) //set limit to number of data we need
+    .sort({ fname: 1 }) // sort by name in ascending order  -1 for descending order
+    .select({ fname: 1 }); //manually tell which property we need
+  console.log(cdata);
+}
+
+comgetdata();
