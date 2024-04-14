@@ -15,7 +15,7 @@ schema :define the structure
 
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const { unique } = require("underscore");
+
 mongoose
   .connect("mongodb://127.0.0.1:27017/hellodb")
   .then(() => {
@@ -39,6 +39,9 @@ const userSchema = new mongoose.Schema({
     unique: true,
     default: () => new mongoose.Types.ObjectId(), // Automatically generate a new ObjectId
   },
+  roll: {
+    type: Number,
+  },
 });
 
 // schema to model
@@ -47,8 +50,9 @@ const Usermodel = mongoose.model("usermodel", userSchema);
 
 async function createUser() {
   const user = new Usermodel({
-    fname: "prem",
+    fname: "sharmila",
     lname: "khatri",
+    roll: 30,
   });
   const result = await user.save();
   console.log(result);
@@ -61,7 +65,7 @@ async function getData() {
   console.log("data is", users);
 }
 
-getData();
+// getData();
 
 // complex queries
 
@@ -73,4 +77,24 @@ async function comgetdata() {
   console.log(cdata);
 }
 
-comgetdata();
+// comgetdata();
+
+// compariison query operators
+/*
+eq: equal
+ne : not equal
+gt: greater than
+gte greater and equal to
+lt lte
+in
+nin  not in
+*/
+
+async function compoperators() {
+  const result = await Usermodel.find({ roll: { $gte: 10 } });
+  const indata = await Usermodel.find({ roll: { $in: [10, 15, 30] } });
+  console.log(result);
+  console.log("this is indata", indata);
+}
+
+// compoperators();
