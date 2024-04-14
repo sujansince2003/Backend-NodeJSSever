@@ -98,3 +98,17 @@ async function compoperators() {
 }
 
 // compoperators();
+async function logFun() {
+  // find data where roll is between 11 and 49 and fname is sharmila. both condition need to match
+  const logdata = await Usermodel.find({
+    $and: [{ roll: { $gt: 10, $lt: 50 } }, { fname: { $eq: "sharmila" } }],
+  });
+  console.log(logdata);
+  // find data where name is either sujan or roll gte 10. one condition need to match
+  const logdataor = await Usermodel.find({
+    $or: [{ name: { $eq: "sujan" } }, { roll: { $gte: 10 } }],
+  });
+  console.log(logdataor);
+}
+
+logFun();
