@@ -103,12 +103,36 @@ async function logFun() {
   const logdata = await Usermodel.find({
     $and: [{ roll: { $gt: 10, $lt: 50 } }, { fname: { $eq: "sharmila" } }],
   });
-  console.log(logdata);
+  // console.log(logdata);
   // find data where name is either sujan or roll gte 10. one condition need to match
   const logdataor = await Usermodel.find({
     $or: [{ name: { $eq: "sujan" } }, { roll: { $gte: 10 } }],
   });
-  console.log(logdataor);
+  // console.log(logdataor);
+  const regexstartwith = await Usermodel.find({ fname: /^SHAR/i });
+  console.log(regexstartwith);
+  const regexendwith = await Usermodel.find({ fname: /em$/ }); //give object where fname ends with em
+  // console.log(regexendwith);
+  // contains some string
+  // find({fname:/.*har.*/})
 }
 
-logFun();
+// logFun();
+
+// pagination
+const pageNumber = 1;
+const pageSize = 10;
+
+async function pagination() {
+  // Calculate the number of documents to skip
+  const skip = (pageNumber - 1) * pageSize;
+
+  // Query the database with pagination
+  const paginationData = await Usermodel.find({})
+    .skip(skip) // Skip the documents for the previous pages
+    .limit(pageSize); // Limit the number of documents returned
+
+  console.log(paginationData);
+}
+
+pagination();
