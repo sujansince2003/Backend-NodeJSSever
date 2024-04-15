@@ -28,7 +28,26 @@ const Course = mongoose.model("Course", courseSchema);
 
 async function getCourses(id) {
   const courses = await Course.findById(id);
-  console.log(courses);
+  if (!courses) return;
+  courses.author = "Sujan";
+  await courses.save();
 }
 
-getCourses("661d3cdcc16b3668bf6e1ec1");
+// getCourses("661d3cdcc16b3668bf6e1ec1");
+
+//
+
+//
+
+async function getCoursesbyu(id) {
+  const result = await Course.updateOne(
+    { _id: id },
+    {
+      $set: {
+        author: "pk",
+        isPublished: false,
+      },
+    }
+  );
+}
+getCoursesbyu("661d3cdcc16b3668bf6e1ec1");
