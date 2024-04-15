@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const { get } = require("underscore");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mongoexercises")
+  .connect("mongodb://127.0.0.1:27017/mongo-exercises")
   .then(() => {
     console.log("mongo connect");
   })
@@ -21,7 +20,7 @@ const courseSchema = new mongoose.Schema({
 });
 
 // creating model
-const Coursemodel = mongoose.model("courses", courseSchema);
+const Coursemodel = mongoose.model("coursess", courseSchema);
 
 // get all  courses
 async function Getall() {
@@ -29,7 +28,7 @@ async function Getall() {
   console.log(bcourse);
 }
 
-// Getall();
+Getall();
 
 async function GetBackend() {
   const bcourse = await Coursemodel.find({
@@ -68,4 +67,52 @@ async function get15() {
   }
 }
 
-get15();
+// get15();
+
+// updating documents
+// query first approach
+async function updateDoc(id) {
+  //   const course = await .findById();
+  console.log(course);
+  //   if (!course) return;
+  //   course.isPublished = true;
+  //   course.author = "new author";
+  //   also we can use
+  /* 
+  course.set(
+      {
+      isPublished:true,
+      author:"new author"
+      }
+  )
+  
+  */
+
+  //   const result = await course.save();
+  //   console.log(result);
+  //   console.log("ok");
+}
+
+// updateDoc("5a68fdd7bee8ea64649c2777");
+
+async function updateDoc(id) {
+  const course = await Coursemodel.findById(id);
+  console.log("Found course:", course);
+}
+
+// updateDoc("5a68fe2142ae6a6482c4c9cb");
+async function updateDoc(id) {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      console.log("Invalid ID provided.");
+      return;
+    }
+
+    const course = await Coursemodel.findById(id);
+    console.log("Found course:", course);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+updateDoc("5a68fe2142ae6a6482c4c9cb");

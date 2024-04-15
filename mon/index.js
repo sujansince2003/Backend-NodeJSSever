@@ -135,4 +135,12 @@ async function pagination() {
   console.log(paginationData);
 }
 
-pagination();
+// pagination();
+
+async function mdata(id) {
+  const muser = await Usermodel.findById(id);
+  if (!muser) return;
+  console.log(muser);
+}
+
+mdata("661bd833b946ab807b27c106");
