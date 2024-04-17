@@ -50,9 +50,11 @@ const Usermodel = mongoose.model("usermodel", userSchema);
 
 async function createUser() {
   const user = new Usermodel({});
+
   try {
-    const result = await user.save();
-    console.log(result);
+    await user.validate();
+    // const result = await user.save();
+    // console.log(result);
   } catch (err) {
     console.log(err.message);
   }
