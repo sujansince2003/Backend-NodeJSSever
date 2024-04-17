@@ -44,10 +44,18 @@ async function getCoursesbyu(id) {
     { _id: id },
     {
       $set: {
-        author: "pk",
+        author: "psk",
         isPublished: false,
       },
     }
   );
 }
-getCoursesbyu("661d3cdcc16b3668bf6e1ec1");
+// getCoursesbyu("661d3cdcc16b3668bf6e1ec1");
+
+// removing documents
+async function removecourse(id) {
+  const result = await Course.deleteOne({ _id: id });
+  console.log(result);
+}
+
+removecourse("661d3cdcc16b3668bf6e1ec1");

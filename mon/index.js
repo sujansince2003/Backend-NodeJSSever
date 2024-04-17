@@ -49,15 +49,15 @@ const userSchema = new mongoose.Schema({
 const Usermodel = mongoose.model("usermodel", userSchema);
 
 async function createUser() {
-  const user = new Usermodel({
-    fname: "sharmila",
-    lname: "khatri",
-    roll: 30,
-  });
-  const result = await user.save();
-  console.log(result);
+  const user = new Usermodel({});
+  try {
+    const result = await user.save();
+    console.log(result);
+  } catch (err) {
+    console.log(err.message);
+  }
 }
-// createUser();
+createUser();
 
 // to retrieve data
 async function getData() {
@@ -143,4 +143,4 @@ async function mdata(id) {
   console.log(muser);
 }
 
-mdata("661bd833b946ab807b27c106");
+// mdata("661bd833b946ab807b27c106");
