@@ -12,7 +12,6 @@ mongoose
 const userSchema = new mongoose.Schema({
   fname: {
     type: String,
-
     required: true,
     minlength: 2,
     maxlength: 255,
@@ -41,6 +40,12 @@ const userSchema = new mongoose.Schema({
   },
   roll: {
     type: Number,
+    validate: {
+      validator: function (v) {
+        return v > 3;
+      },
+      message: "Enter value greater than 3",
+    },
   },
 });
 
@@ -53,7 +58,7 @@ async function createUser() {
     fname: "sujddan",
     lname: "khatri",
 
-    roll: 3,
+    roll: 4,
   });
 
   try {
