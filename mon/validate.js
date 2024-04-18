@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 255,
+    lowercase: true,
   },
   gender: {
     type: String,
@@ -70,10 +71,10 @@ const Usermodel = mongoose.model("usermodel", userSchema);
 
 async function createUser() {
   const user = new Usermodel({
-    fname: "sujddan",
+    fname: "SUJAN BagUS ZuxxY",
     lname: "khatri",
 
-    roll: 24,
+    roll: 45,
     age: 13,
   });
 
@@ -83,6 +84,9 @@ async function createUser() {
     console.log(result);
   } catch (err) {
     console.log(err.message);
+    // for (field in err.errors) {
+    //   console.log(err.errors[field]);
+    // }
   }
 }
 createUser();
