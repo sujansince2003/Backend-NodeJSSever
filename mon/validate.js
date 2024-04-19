@@ -47,6 +47,21 @@ const userSchema = new mongoose.Schema({
       message: "Enter value greater than 3",
     },
   },
+  age: {
+    required: true,
+    type: Number,
+    validator: function (v) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (v > 20) {
+            resolve(true);
+          } else {
+            reject(new Error("enter age greater than 20"));
+          }
+        }, 3000);
+      });
+    },
+  },
 });
 
 // schema to model
@@ -58,11 +73,12 @@ async function createUser() {
     fname: "sujddan",
     lname: "khatri",
 
-    roll: 4,
+    roll: 24,
+    age: 13,
   });
 
   try {
-    // await user.validate();
+    await user.validate();
     const result = await user.save();
     console.log(result);
   } catch (err) {
