@@ -74,7 +74,7 @@ async function createUser() {
     fname: "SUJAN BagUS ZuxxY",
     lname: "khatri",
 
-    roll: 45,
+    roll: 45 ,
     age: 13,
   });
 
